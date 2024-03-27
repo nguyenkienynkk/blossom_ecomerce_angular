@@ -1,0 +1,31 @@
+header {
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(173, 178, 203);
+}
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.navbar .container {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.navbar .container .navbar-brand {
+  color: rgb(173, 178, 203);
+}
+
+.navbar .container .navbar-nav .nav-link {
+  color: rgb(255, 255, 255);
+  border-radius: 18px;
+  padding: 8px 16px;
+}
+
+.nav-item.active a {
+  background-color: #830e92;
+  color: white;
+}
+.container .navbar-brand svg {
+  margin-right: 20px;
+  margin-top: 20px;
+}
