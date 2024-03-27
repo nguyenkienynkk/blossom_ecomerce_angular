@@ -1,0 +1,106 @@
+<style>
+.intro-section{
+    text-align: center;
+    color: aliceblue;
+    padding: 20px;
+}
+.search-box {
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 20px;
+}
+.search-input {
+    width: 300px;
+    background-color: rgb(19, 23, 42);
+    margin-right: 10px;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white;
+}
+.product-category{
+    width: 200px;
+}
+.form-control {
+    background-color: transparent;
+    color: white;
+}
+.form-control::placeholder{
+    color:rgba(255, 255, 255, 0.5);
+    opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+    color:rgba(255, 255, 255, 0.5);  
+}
+.form-control::-ms-input-placeholder {
+    color:rgba(255, 255, 255, 0.5);  
+}
+.form-control option{
+    color: black;
+}
+.product-item {
+    background-color: rgb(19, 23, 42);
+    border: solid 1px rgb(35, 39, 61);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.product-image{
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+.product-name {
+    color: white;
+}
+.product-description {
+    color: rgb(173, 178, 203);
+}
+.product-warranty{
+    color: rgb(241, 126, 212);
+}
+.product-price {
+    color: white;
+}
+.product-rating {
+    color: #FFD700;
+    margin-top: 10px;
+}
+</style>
+<div class="container">
+<div class="intro-section">
+    <h1>Đây là trang Home</h1>
+    <p>Trang này hiển thị một cái gì đó</p>
+    <p>Các bạn có thể xem sản phẩm và mua hàng tại đây</p>
+</div>
+<div class="search-box">
+<input type="text" name="" class="form-control search-input" placeholder="Tìm sản phẩm">
+<select class="form-control product-category">
+    <option selected disabled>Danh mục sản phẩm</option>
+    <option value="">Đồ điện tử</option>
+    <option value="">Đồ gia dụng</option>
+    <option value="">Bánh kẹo</option>
+    <option value="">Hải sản</option>
+</select>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="product-item">
+<img 
+ src="https://images.pexels.com/photos/4050426/pexels-photo-4050426.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+ alt="Product Image" 
+ class="product-image">
+ <h3 class="product-name">Product 1</h3>
+ <p class="product-description">Lorem alone so courfsdfbjhsdkas</p>
+ <p class="product-warranty">Bảo hành : 12 tháng</p>
+ <p class="product-price">Giá: $100</p>
+ <div class="product-rating">
+    <i class="fa-solid fa-star"></i>
+    <i class="fa-solid fa-star"></i>
+    <i class="fa-solid fa-star"></i>
+    <i class="fa-solid fa-star"></i>
+    <i class="fa-regular fa-star-half-stroke"></i>
+ </div>
+        </div>
+    </div>
+</div>
+</div>
