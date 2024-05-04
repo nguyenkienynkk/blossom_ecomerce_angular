@@ -26,7 +26,7 @@ export class DetailProductComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-    const idParam = 5; //fake tạm 1 giá trị
+    const idParam = 4; //fake tạm 1 giá trị
     if (idParam !== null) {
       this.productId = +idParam;
     }
@@ -93,10 +93,10 @@ export class DetailProductComponent implements OnInit {
   addToCart(): void {
     debugger;
     if (this.product) {
-      this.cartService.addToCart(this.product.id, this.quantity);
+      this.cartService.addToCart(4, this.quantity);
     } else {
-      //Xử lý khi product null
-      console.error('Không thể thêm sản phẩm vào giỏ hàng vì product null.');
+      // Xử lý khi product là null
+      console.error('Không thể thêm sản phẩm vào giỏ hàng vì product là null.');
     }
   }
   increaseQuantity(): void {
