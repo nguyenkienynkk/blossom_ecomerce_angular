@@ -23,7 +23,13 @@ export class ProductService {
       .set('limit', limit.toString());
     return this.http.get<Product[]>(this.apiGetProducts, { params });
   }
-  getDetailProduct(prodcutId: number) {
-    return this.http.get(`${enviroment.apiBaseUrl}/products/${prodcutId}`)
+  getDetailProduct(productId: number) {
+    return this.http.get(`${enviroment.apiBaseUrl}/products/${productId}`)
+  }
+  getProductsByIds(productIds: number[]):Observable<Product[]>{
+    //Chuyển danh sách id thành 1 chuỗi param
+    debugger
+    const params = new HttpParams().set('ids',productIds.join(','));
+    return this.http.get<Product[]>(`${this.apiGetProducts}/by-ids`, { params })
   }
 }
