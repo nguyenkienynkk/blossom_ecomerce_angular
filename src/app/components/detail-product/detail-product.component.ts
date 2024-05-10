@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { enviroment } from 'src/app/enviroments';
 import { Product } from 'src/app/models/product';
 import { ProductImage } from 'src/app/models/product.image';
@@ -21,12 +21,13 @@ export class DetailProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cartService: CartService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
     debugger;
-    const idParam = 11; //fake tạm 1 giá trị
+    const idParam = this.activatedRoute.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.productId = +idParam;
     }
