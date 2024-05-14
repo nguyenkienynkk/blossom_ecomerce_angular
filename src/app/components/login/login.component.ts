@@ -7,6 +7,7 @@ import { LoginResponse } from 'src/app/responses/user/login.response';
 import { TokenService } from 'src/app/service/token.service';
 import { RoleService } from 'src/app/service/role.service';
 import { Role } from 'src/app/models/role';
+import { UserResponse } from 'src/app/responses/user/user.response';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent {
   roles: Role[] = []; // Mảng roles
   rememberMe: boolean = true;
   selectedRole: Role | undefined; // Biến để lưu giá trị được chọn từ dropdown
-
+  userResponse?: UserResponse
   onPhoneNumberChange() {
     console.log(`Phone typed:${this.phoneNumber}`);
   }
@@ -31,7 +32,7 @@ export class LoginComponent {
     private userService: UserService,
     private tokenService: TokenService,
     private roleService: RoleService
-  ) {}
+  ) { }
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -58,15 +59,31 @@ export class LoginComponent {
     };
     this.userService.login(loginDTO).subscribe({
       next: (response: LoginResponse) => {
+        debugger;
         //muốn sử dụng token trong các yêu cầu API
         //trong mỗi request đa số sẽ đều phải gắn token vào được gọi là interceptors
         const { token } = response;
         if (this.rememberMe) {
           this.tokenService.setToken(token);
-        }  
-        debugger;
-        //Xử lý kết quả trả về khi đăng ký thành công
-        // this.route.navigate(['/login'])
+          this.userService.getUserDetail(token).subscribe({
+            next: (response: any) => {
+              debugger
+              this.userResponse = {
+                ...response,
+                date_of_birth: new Date(response.date_of_birth)
+              }
+              this.userService.saveUserResponseToLocalStorage(this.userResponse);
+              //Xử lý kết quả trả về khi đăng ký thành công
+              this.route.navigate(['/'])
+            },
+            complete: () => {
+              debugger
+            },
+            error: (error: any) => {
+              alert(error.error.message)
+            }
+          })
+        }
       },
       complete: () => {
         debugger;
