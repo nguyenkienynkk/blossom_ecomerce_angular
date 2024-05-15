@@ -1,31 +1,53 @@
+@import '../../styles/shared-styles.scss';
+
 header {
-  background-color: rgba(0, 0, 0, 0);
-  color: rgb(173, 178, 203);
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(173, 178, 203);
 }
 
 .navbar {
-  background-color: rgba(0, 0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .navbar .container {
-  background-color: rgba(0, 0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .navbar .container .navbar-brand {
-  color: rgb(173, 178, 203);
+    color: rgb(173, 178, 203);
 }
 
 .navbar .container .navbar-nav .nav-link {
-  color: rgb(255, 255, 255);
-  border-radius: 18px;
-  padding: 8px 16px;
+    color: rgb(173, 178, 203);
+    border-radius: 18px;
+    padding: 8px 16px;
 }
 
-.nav-item.active a {
-  background-color: #830e92;
-  color: white;
+.navbar .container .navbar-nav .nav-link.active {
+    background-color: $shopapp-color !important;
+    color: white !important;
 }
-.container .navbar-brand svg {
-  margin-right: 20px;
-  margin-top: 20px;
+.nav-item.active {
+    background-color: $shopapp-color !important;
+    color: white !important;
+}
+
+/* Add this CSS to your project's stylesheet */
+
+.popover-list {
+    padding: 10px;
+}
+.popover-body {
+    padding: 0px;
+}
+.popover-item {
+    display: block;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.popover-item:hover {
+    background-color: #f0f0f0;
+    color: $shopapp-color;    
 }

@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { OrderDTO } from 'src/app/dtos/order/order.dto';
 import { enviroment } from 'src/app/enviroments';
+import { Order } from 'src/app/models/order';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/service/cart.service';
 import { OrderService } from 'src/app/service/order.service';
 import { ProductService } from 'src/app/service/product.serivce';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-order',
@@ -39,7 +42,9 @@ export class OrderComponent implements OnInit {
     private cartService: CartService,
     private productService: ProductService,
     private fb: FormBuilder,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private tokenService: TokenService,
+    private router :Router
   ) {
     this.orderForm = this.fb.group({
       fullname: ['Nguyễn Khắc Kiên', Validators.required], // fullname là FormControl bắt buộc      
@@ -54,11 +59,17 @@ export class OrderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    debugger
+    // this.cartService.clearCart();
+    this.orderData.user_id = this.tokenService.getUserId();
     debugger;
     const cart = this.cartService.getCart();
     const productIds = Array.from(cart.keys()); //lấy ra key của cặp { key : value }
     debugger;
     //Lấy thông tin sản phẩm dựa trên list id
+    if(productIds.length === 0) {
+      return;
+    }
     this.productService.getProductsByIds(productIds).subscribe({
       next: (products) => {
         debugger;
@@ -106,11 +117,14 @@ export class OrderComponent implements OnInit {
         product_id: cartItem.product.id,
         quantity: cartItem.quantity
       }))
+      this.orderData.total_money = this.totalAmount;
       //Dữ liệu hợp lệ , bạn có thể gửi đơn hàng đi
       this.orderService.placeOrder(this.orderData).subscribe({
-        next: (response) => {
+        next: (response:Order) => {
           debugger
-          console.log('Đặt hàng thành công')
+          alert('Đặt hàng thành công')
+          this.cartService.clearCart()
+          this.router.navigate(['/'])
         },
         complete: () => {
           debugger
@@ -118,7 +132,7 @@ export class OrderComponent implements OnInit {
         },
         error: (error: any) => {
           debugger
-          console.error('Lỗi khi đặt hàng', error);
+          alert(`Lỗi khi đặt hàng: ${error}`);
         }
       })
     } else {

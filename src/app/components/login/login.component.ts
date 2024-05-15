@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { LoginDTO } from '../../dtos/user/login.dto';
@@ -14,7 +14,7 @@ import { UserResponse } from 'src/app/responses/user/user.response';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   @ViewChild('loginForm') loginForm!: NgForm;
 
   phoneNumber: string = '12345678';
