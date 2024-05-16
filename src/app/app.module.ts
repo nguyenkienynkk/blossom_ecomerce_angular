@@ -14,6 +14,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     RegisterComponent,
     AppComponent,
+    UserProfileComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

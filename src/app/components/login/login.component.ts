@@ -14,11 +14,15 @@ import { UserResponse } from 'src/app/responses/user/user.response';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm!: NgForm;
+  // Login user
+  // phoneNumber: string = '012345678';
+  // password: string = '123456';
 
-  phoneNumber: string = '12345678';
-  password: string = '123456';
+  //Login admin
+  phoneNumber: string = '0393524703';
+  password: string = 'admin';
 
   roles: Role[] = []; // Mảng roles
   rememberMe: boolean = true;
@@ -31,7 +35,8 @@ export class LoginComponent implements OnInit{
     private route: Router,
     private userService: UserService,
     private tokenService: TokenService,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private router: Router
   ) { }
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -74,7 +79,11 @@ export class LoginComponent implements OnInit{
               }
               this.userService.saveUserResponseToLocalStorage(this.userResponse);
               //Xử lý kết quả trả về khi đăng ký thành công
-              this.route.navigate(['/'])
+              if (this.userResponse?.role.name == 'ADMIN') {
+                this.router.navigate(['/admin'])
+              } else if(this.userResponse?.role.name == 'USER'){
+                this.route.navigate(['/'])
+              }
             },
             complete: () => {
               debugger
@@ -94,5 +103,11 @@ export class LoginComponent implements OnInit{
       }
     });
     // alert(message);
+  }
+
+  createAccount() {
+    debugger
+    // Chuyển hướng người dùng đến trang đăng ký (hoặc trang tạo tài khoản)
+    this.router.navigate(['/register']);
   }
 }

@@ -5,6 +5,7 @@ import { RegisterDTO } from '../dtos/user/register.dto';
 import { LoginDTO } from '../dtos/user/login.dto';
 import { enviroment } from '../enviroments';
 import { UserResponse } from '../responses/user/user.response';
+import { UpdateUserDTO } from '../dtos/user/update.user.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,16 @@ export class UserService {
   }
   getUserDetail(token: string) {
     return this.http.post(this.apiUserDetail, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      })
+    })
+  }
+  updateUserDetail(token: string, updateUserDTO: UpdateUserDTO) {
+    debugger
+    let userResponse = this.getUserResponseToLocalStorage();        
+    return this.http.put(`${this.apiUserDetail}/${userResponse?.id}`,updateUserDTO,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
