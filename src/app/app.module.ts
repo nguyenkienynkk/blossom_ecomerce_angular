@@ -16,6 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { OrderAdminComponent } from './components/admin/order/order.admin.component';
+import { ProductAdminComponent } from './components/admin/product/product.admin.component';
+import { CategoryAdminComponent } from './components/admin/category/category.admin.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { AdminComponent } from './components/admin/admin.component';
     RegisterComponent,
     AppComponent,
     UserProfileComponent,
-    AdminComponent
+    AdminComponent,
+    OrderAdminComponent,
+    ProductAdminComponent,
+    CategoryAdminComponent
   ],
   imports: [
     BrowserModule,
